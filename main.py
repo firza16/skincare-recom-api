@@ -43,12 +43,13 @@ def predict_skin_type(image_data):
     predictions = model.predict(image_array)
     
     predicted_probabilities = predictions[0]
-    prediction_dict = {class_names[i]: prob * 100 for i, prob in enumerate(predicted_probabilities)}
+    prediction_dict = {class_names[i]: float(prob * 100) for i, prob in enumerate(predicted_probabilities)}  # Konversi ke float
     
     sorted_predictions = sorted(prediction_dict.items(), key=lambda x: x[1], reverse=True)
     
     skin_types = [label for label, prob in sorted_predictions if prob > 25]  # Atur threshold jika diperlukan
     return skin_types, prediction_dict
+
 
 # Endpoint untuk prediksi tipe kulit dan rekomendasi produk
 @app.route('/predict', methods=['POST'])
