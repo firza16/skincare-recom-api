@@ -6,6 +6,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from io import BytesIO
 from PIL import Image
 
+
 app = Flask(__name__)
 
 # Daftar kelas tipe kulit
